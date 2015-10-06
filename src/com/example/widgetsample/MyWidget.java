@@ -28,11 +28,9 @@ public class MyWidget extends AppWidgetProvider {
             } else {
             	rv.setRemoteAdapter(R.id.listView1, intent);
             } 
+            // listview沒資料時顯示R.id.now,有資料時R.id.now會被隱藏
+            //rv.setEmptyView(R.id.listView1, R.id.now);
            
-            rv.setEmptyView(R.id.listView1, R.id.now);
-           
-            rv.setTextViewText(R.id.now,  
-            		new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
             appWidgetManager.updateAppWidget(appWidgetIds[i], rv);
 
     	}
