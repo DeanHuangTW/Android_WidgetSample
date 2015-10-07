@@ -8,6 +8,7 @@ import java.util.HashMap;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -60,13 +61,17 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		remoteViews.setTextViewText(R.id.textView_title, (String)map.get("title"));
 		remoteViews.setTextViewText(R.id.textView_value, (String)map.get("value"));
 		
+		// 點ListView的Title時觸發MyWidget.onReceive()
+		// 點其他地方不會有反應
+        Intent fillInIntent = new Intent();
+        remoteViews.setOnClickFillInIntent(R.id.textView_title, fillInIntent);
 		
 		return remoteViews;
 	}
 
 	@Override
 	public void onDataSetChanged() {
-		// TODO Auto-generated method stub
+		Log.v("Dean", "onDataSetChanged");
 		
 	}
 
